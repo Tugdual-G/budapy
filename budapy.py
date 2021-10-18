@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Buddabrot from Mandelbrot fractal
+TODO add comments and doc
 """
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,7 +12,7 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
-N = 3000
+N = 500
 a_min, a_max = -3, 2
 b_max = 2
 b_min = - b_max
@@ -30,7 +31,7 @@ if rank == 0:
 else:
     sumM_b = None
 
-buddahbrot(a, b, maxit=20, N=1e8, M=M_b)
+buddahbrot(a, b, maxit=20, N=1e6, M=M_b)
 
 comm.Ireduce(M_b, sumM_b, op=MPI.SUM, root=0)
 
@@ -40,9 +41,8 @@ if rank == 0:
     # M_m[M_m == 99] = 0
     # M = M_m + M_b
     np.save('budd.npy', M_b)
-    M_b = np.load('budd.npy')
     plt.pcolormesh(M_b, cmap="inferno", shading="gouraud")
     plt.axis("image")
     plt.axis("off")
-    plt.savefig("buddbrot.png", bbox_inches='tight', dpi=300)
+    plt.savefig("bud.png", bbox_inches='tight', dpi=300)
     plt.show()

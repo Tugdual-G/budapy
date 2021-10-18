@@ -3,6 +3,7 @@
 *.log
 tmp/
 
+bud.png
 *.py[cod]
 *.egg
 *.npy
