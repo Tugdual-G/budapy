@@ -1,5 +1,5 @@
 # budapy
-Generate beautifuls figures based on the Mandelbrot fractal via parallel cumputing.
+Generate beautiful figures based on the Mandelbrot fractal via parallel cumputing.
 ![alt text](buddbrot.png)
 
 Use mpi4py and numba.
